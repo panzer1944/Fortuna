@@ -30,7 +30,6 @@
 	casing_ejector = FALSE
 	var/recentpump = 0 // to prevent spammage
 	spawnwithmagazine = TRUE
-	untinkerable = TRUE //no tinkering shotguns, bad.
 	var/pump_sound = 'sound/weapons/shotgunpump.ogg'
 	fire_sound = 'sound/f13weapons/shotgun.ogg'
 
@@ -110,8 +109,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 0.5
-	extra_damage = 1
-	untinkerable = TRUE
 	force = 20
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual/simple
 	sawn_desc = "Short and concealable, terribly uncomfortable to fire, but worse on the other end."
@@ -145,10 +142,8 @@
 	icon_state = "widowmaker"
 	item_state = "shotgundouble"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
-	untinkerable = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	weapon_weight = WEAPON_HEAVY
-	extra_damage = 1
 	fire_delay = 0.5
 	force = 20
 	sawn_desc = "Someone took the time to chop the last few inches off the barrel and stock of this shotgun. Now, the wide spread of this hand-cannon's short-barreled shots makes it perfect for short-range crowd control."
@@ -180,7 +175,6 @@
 	item_state = "shotgunpump"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/lethal
 	fire_delay = 8 //slightly slower than police/military versions.
-	extra_damage = 1
 
 /obj/item/gun/ballistic/shotgun/hunting/update_icon_state()
 	if(sawn_off)
@@ -242,7 +236,6 @@
 	icon_state = "trench"
 	item_state = "shotguntrench"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/trench
-	extra_damage = 1
 	var/select = 0
 	actions_types = list(/datum/action/item_action/toggle_firemode)
 	can_bayonet = TRUE
@@ -275,7 +268,6 @@
 			select = 0
 			burst_size = 1
 			spread = 2
-			extra_damage = 1
 			to_chat(user, "<span class='notice'>You go back to firing the shotgun one round at a time.</span>")
 
 
@@ -306,6 +298,7 @@
 /obj/item/gun/ballistic/shotgun/automatic/combat/auto5
 	name = "Browning Auto-5"
 	desc = "A semi automatic shotgun with a four round tube."
+	fire_delay = 7
 	icon_state = "auto5"
 	item_state = "shotgunauto5"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
@@ -319,8 +312,7 @@
 	icon_state = "shotgunlever"
 	item_state = "shotgunlever"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/trench
-	extra_damage = 1
-	fire_delay = 7
+	fire_delay = 9
 	recoil = 0.5
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
@@ -393,9 +385,8 @@
 	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
 	icon_state = "shotgunriot"
-	item_state = "shotgunriot" 
+	item_state = "shotgunriot"
 	w_class = WEIGHT_CLASS_BULKY
-	untinkerable = TRUE
 	mag_type = /obj/item/ammo_box/magazine/d12g
 	fire_delay = 6
 	burst_size = 1

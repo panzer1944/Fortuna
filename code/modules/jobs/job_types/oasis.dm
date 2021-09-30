@@ -71,6 +71,55 @@ Mayor
 		/obj/item/storage/box/citizenship_permits = 1, \
 		/obj/item/ammo_box/a357=2, \
 		/obj/item/pen/fountain/captain = 1)
+		
+/*--------------------------------------------------------------*/	
+	
+/datum/job/oasis/f13secretary
+	title = "Secretary"
+	flag = F13SECRETARY
+	department_flag = DEP_OASIS
+	faction = "Town"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "The Mayor"
+	description = "You are the mayor's assistant, you help them with anything and everything they require and make sure trivial problems do not concern them. You handle clerical work, hear complaints, and set meetings. An efficient and smooth running town means a happy mayor."
+	selection_color = "#d7b088"
+
+	exp_requirements = 800
+
+	outfit = /datum/outfit/job/den/f13secretary
+	access = list(ACCESS_BAR, ACCESS_CARGO_BOT, ACCESS_MINT_VAULT, ACCESS_CLINIC, ACCESS_KITCHEN, ACCESS_MINING, ACCESS_FORENSICS_LOCKERS)
+	minimal_access = list(ACCESS_BAR, ACCESS_CARGO_BOT, ACCESS_MINT_VAULT, ACCESS_KITCHEN, ACCESS_CLINIC, ACCESS_MINING, ACCESS_FORENSICS_LOCKERS)
+	matchmaking_allowed = list(
+		/datum/matchmaking_pref/friend = list(
+			/datum/job/oasis,
+		),
+		/datum/matchmaking_pref/rival = list(
+			/datum/job/oasis,
+			/datum/job/wasteland/f13enforcer,
+		),
+	)
+
+/datum/outfit/job/den/f13secretary
+	name = "Secretary"
+	jobtype = /datum/job/oasis/f13secretary
+
+	ears = 			/obj/item/radio/headset/headset_town
+	id =            /obj/item/card/id/silver
+	glasses = /obj/item/clothing/glasses/regular/hipster
+	gloves = /obj/item/clothing/gloves/color/white
+	backpack = /obj/item/storage/backpack/satchel/leather
+	satchel = /obj/item/storage/backpack/satchel/leather
+	r_hand = /obj/item/storage/briefcase/secretary
+	l_pocket = /obj/item/storage/bag/money/small/settler
+	r_pocket = /obj/item/flashlight/seclite
+	shoes = 		/obj/item/clothing/shoes/f13/fancy
+	uniform = /obj/item/clothing/under/suit/black
+	backpack_contents = list(
+		/obj/item/ammo_box/magazine/m9mm = 1, 
+		/obj/item/melee/onehanded/knife/switchblade = 1,
+		/obj/item/pda = 1,
+		)
 
 /*--------------------------------------------------------------*/
 
@@ -88,6 +137,11 @@ Mayor
 	exp_requirements = 1500
 
 	outfit = /datum/outfit/job/den/f13sheriff
+	
+	loadout_options = list(
+	/datum/outfit/loadout/thelaw,
+	/datum/outfit/loadout/dacommissioner,
+	)
 
 	access = list(ACCESS_BAR, ACCESS_CLONING, ACCESS_GATEWAY, ACCESS_CARGO_BOT, ACCESS_MINT_VAULT, ACCESS_KITCHEN, ACCESS_MINING, ACCESS_FORENSICS_LOCKERS)
 	minimal_access = list(ACCESS_BAR, ACCESS_CLONING, ACCESS_GATEWAY, ACCESS_CARGO_BOT, ACCESS_MINT_VAULT, ACCESS_CLINIC, ACCESS_KITCHEN, ACCESS_MINING, ACCESS_FORENSICS_LOCKERS)
@@ -114,19 +168,37 @@ Mayor
 	uniform =  		/obj/item/clothing/under/f13/sheriff
 	neck =			/obj/item/storage/belt/holster
 	shoes = 		/obj/item/clothing/shoes/f13/cowboy
-	suit = 			/obj/item/clothing/suit/armor/f13/town/sheriff
-	head = 			/obj/item/clothing/head/f13/town/sheriff
 	glasses =		/obj/item/clothing/glasses/sunglasses
-	l_hand = 		/obj/item/gun/ballistic/rifle/repeater/brush
 	l_pocket =		/obj/item/storage/bag/money/small/den
 	backpack_contents = list(
-		/obj/item/gun/ballistic/revolver/m29/peacekeeper = 1,
 		/obj/item/storage/box/deputy_badges = 1,
-		/obj/item/ammo_box/tube/c4570 = 3,
-		/obj/item/ammo_box/m44 = 2,
 		/obj/item/restraints/handcuffs = 1,
 		/obj/item/melee/classic_baton = 1,
 		/obj/item/melee/onehanded/knife/hunting = 1,
+		)
+
+/datum/outfit/loadout/thelaw
+	name = "The Law Man"
+	suit = /obj/item/clothing/suit/armor/f13/town/sheriff
+	head = /obj/item/clothing/head/f13/town/sheriff
+	r_hand = /obj/item/gun/ballistic/rifle/repeater/brush
+	belt = /obj/item/gun/ballistic/revolver/m29/peacekeeper
+	backpack_contents = list(
+		/obj/item/ammo_box/tube/c4570 = 3,
+		/obj/item/ammo_box/m44 = 2,
+		)
+
+/datum/outfit/loadout/dacommissioner
+	name = "The Commissioner"
+	uniform = /obj/item/clothing/under/f13/detectivealt
+	suit = /obj/item/clothing/suit/armor/f13/town/commissioner
+	head = /obj/item/clothing/head/f13/town/commissioner
+	shoes = /obj/item/clothing/shoes/combat
+	r_hand = /obj/item/gun/energy/laser/aer9
+	belt = /obj/item/gun/ballistic/automatic/pistol/sig/commissioner
+	backpack_contents = list(
+		/obj/item/stock_parts/cell/ammo/mfc = 1,
+		/obj/item/ammo_box/magazine/m9mm = 3,
 		)
 
 /datum/outfit/job/den/f13sheriff/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -187,7 +259,7 @@ Mayor
 		/obj/item/restraints/handcuffs = 1,
 		/obj/item/storage/belt/holster = 1,
 		)
-		
+
 /datum/outfit/loadout/frontierjustice
 	name = "Frontier Justice"
 	suit = /obj/item/clothing/suit/armor/f13/town/deputy
@@ -199,7 +271,7 @@ Mayor
 		/obj/item/ammo_box/tube/m44 = 2,
 		/obj/item/ammo_box/m44 = 2,
 		)
-		
+
 /datum/outfit/loadout/police
 	name = "Oasis PD"
 	uniform = /obj/item/clothing/under/f13/police
@@ -212,23 +284,21 @@ Mayor
 		/obj/item/ammo_box/shotgun/bean = 1,
 		/obj/item/ammo_box/shotgun/buck = 1,
 		/obj/item/ammo_box/c38 = 3,
-		/obj/item/melee/classic_baton = 1,
+		/obj/item/flashlight/seclite = 1,
 		)
-		
+
 /datum/outfit/loadout/pmc
 	name = "Private Contractor"
 	uniform = /obj/item/clothing/under/f13/combat/militia
 	suit = /obj/item/clothing/suit/armor/vest/alt
-	head = /obj/item/clothing/head/soft/f13/utility/olive
-	r_hand = /obj/item/gun/ballistic/automatic/smg/smg10mm/worn
+	head = /obj/item/clothing/head/helmet
+	l_hand = /obj/item/gun/ballistic/automatic/marksman/policerifle
 	belt = /obj/item/melee/onehanded/knife/switchblade
 	shoes = /obj/item/clothing/shoes/jackboots
 	backpack_contents = list(
-		/obj/item/clothing/head/helmet = 1,
-		/obj/item/ammo_box/magazine/m10mm_adv/ext = 1,
+		/obj/item/ammo_box/magazine/m556/rifle = 2,
 		)
-	
-	
+
 /datum/outfit/job/den/f13deputy/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
 	if(visualsOnly)
@@ -403,172 +473,6 @@ Mayor
 	ADD_TRAIT(H, TRAIT_SURGERY_HIGH, src)
 /*--------------------------------------------------------------*/
 
-/datum/job/oasis/f13preacher
-	title = "Preacher"
-	flag = F13PREACHER
-	department_head = list("Captain")
-	department_flag = DEP_OASIS
-	head_announce = list("Security")
-	faction = "Town"
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "Oasis Government & Police Department"
-	description = "You have finished your long pilgrimage to the fabled oasis. You have restored the chapel and cleared weeds from the grove, and it is now your duty to restore faith to this empty land. Remember that the Oak is the most holy living relic in this valley, protect it at all costs."
-	selection_color = "#dcba97"
-
-	outfit = /datum/outfit/job/den/f13preacher
-
-	loadout_options = list(
-		/datum/outfit/loadout/standardpreacher, //Robes, Book
-		/datum/outfit/loadout/atompreacher, //Atoms Judgement, Followers Robes
-	)
-
-	access = list(ACCESS_BAR)
-	minimal_access = list(ACCESS_BAR)
-	matchmaking_allowed = list(
-		/datum/matchmaking_pref/friend = list(
-			/datum/job/oasis,
-		),
-		/datum/matchmaking_pref/rival = list(
-			/datum/job/oasis,
-		),
-	)
-
-
-/datum/outfit/loadout/atompreacher
-	name = "Atom's Devout"
-	l_hand = /obj/item/twohanded/sledgehammer/atomsjudgement
-	backpack_contents = list(
-		/obj/item/clothing/under/f13/atombeliever=1,
-		/obj/item/clothing/under/f13/atomfaithful=3,
-		/obj/item/clothing/head/helmet/f13/atombeliever=1
-		)
-
-/datum/outfit/loadout/standardpreacher
-	name = "Protector of the Faith"
-	l_hand = /obj/item/nullrod
-	backpack_contents = list(
-		/obj/item/reagent_containers/hypospray/medipen/stimpak=2
-		)
-
-/datum/job/oasis/f13preacher/after_spawn(mob/living/H, mob/M)
-	. = ..()
-	if(H.mind)
-		H.mind.isholy = TRUE
-
-	var/obj/item/storage/book/bible/booze/B = new
-
-	if(GLOB.religion)
-		B.deity_name = GLOB.deity
-		B.name = GLOB.bible_name
-		B.icon_state = GLOB.bible_icon_state
-		B.item_state = GLOB.bible_item_state
-		to_chat(H, "There is already an established religion onboard the station. You are an acolyte of [GLOB.deity]. Defer to the Chaplain.")
-		H.equip_to_slot_or_del(B, SLOT_IN_BACKPACK)
-		var/nrt = GLOB.holy_weapon_type || /obj/item/nullrod
-		var/obj/item/nullrod/N = new nrt(H)
-		H.put_in_hands(N)
-		return
-
-	var/new_religion = DEFAULT_RELIGION
-	if(M.client && M.client.prefs.custom_names["religion"])
-		new_religion = M.client.prefs.custom_names["religion"]
-
-	var/new_deity = DEFAULT_DEITY
-	if(M.client && M.client.prefs.custom_names["deity"])
-		new_deity = M.client.prefs.custom_names["deity"]
-
-	B.deity_name = new_deity
-
-
-	switch(lowertext(new_religion))
-		if("christianity") // DEFAULT_RELIGION
-			B.name = pick("The Holy Bible","The Dead Sea Scrolls")
-		if("buddhism")
-			B.name = "The Sutras"
-		if("clownism","honkmother","honk","honkism","comedy")
-			B.name = pick("The Holy Joke Book", "Just a Prank", "Hymns to the Honkmother")
-		if("chaos")
-			B.name = "The Book of Lorgar"
-		if("cthulhu")
-			B.name = "The Necronomicon"
-		if("hinduism")
-			B.name = "The Vedas"
-		if("homosexuality")
-			B.name = pick("Guys Gone Wild","Coming Out of The Closet")
-		if("imperium")
-			B.name = "Uplifting Primer"
-		if("islam")
-			B.name = "Quran"
-		if("judaism")
-			B.name = "The Torah"
-		if("lampism")
-			B.name = "Fluorescent Incandescence"
-		if("lol", "wtf", "gay", "penis", "ass", "poo", "badmin", "shitmin", "deadmin", "cock", "cocks", "meme", "memes")
-			B.name = pick("Woodys Got Wood: The Aftermath", "War of the Cocks", "Sweet Bro and Hella Jef: Expanded Edition","F.A.T.A.L. Rulebook")
-			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 100) // starts off dumb as fuck
-		if("monkeyism","apism","gorillism","primatism")
-			B.name = pick("Going Bananas", "Bananas Out For Harambe")
-		if("mormonism")
-			B.name = "The Book of Mormon"
-		if("pastafarianism")
-			B.name = "The Gospel of the Flying Spaghetti Monster"
-		if("rastafarianism","rasta")
-			B.name = "The Holy Piby"
-		if("satanism")
-			B.name = "The Unholy Bible"
-		if("science")
-			B.name = pick("Principle of Relativity", "Quantum Enigma: Physics Encounters Consciousness", "Programming the Universe", "Quantum Physics and Theology", "String Theory for Dummies", "How To: Build Your Own Warp Drive", "The Mysteries of Bluespace", "Playing God: Collector's Edition")
-		if("scientology")
-			B.name = pick("The Biography of L. Ron Hubbard","Dianetics")
-		if("servicianism", "partying")
-			B.name = "The Tenets of Servicia"
-			B.deity_name = pick("Servicia", "Space Bacchus", "Space Dionysus")
-			B.desc = "Happy, Full, Clean. Live it and give it."
-		if("subgenius")
-			B.name = "Book of the SubGenius"
-		if("toolboxia","greytide")
-			B.name = pick("Toolbox Manifesto","iGlove Assistants")
-		if("weeaboo","kawaii")
-			B.name = pick("Fanfiction Compendium","Japanese for Dummies","The Manganomicon","Establishing Your O.T.P")
-		else
-			B.name = "The Holy Book of [new_religion]"
-
-	GLOB.religion = new_religion
-	GLOB.bible_name = B.name
-	GLOB.deity = B.deity_name
-
-	H.equip_to_slot_or_del(B, SLOT_IN_BACKPACK)
-
-	SSblackbox.record_feedback("text", "religion_name", 1, "[new_religion]", 1)
-	SSblackbox.record_feedback("text", "religion_deity", 1, "[new_deity]", 1)
-
-
-/datum/outfit/job/den/f13preacher
-	name = "Preacher"
-	jobtype = /datum/job/oasis/f13preacher
-
-	id = /obj/item/card/id/dogtag/town
-	ears = /obj/item/radio/headset/headset_town
-	belt = null
-	uniform = /obj/item/clothing/under/f13/chaplain
-	backpack_contents = list(/obj/item/camera/spooky = 1)
-	backpack = /obj/item/storage/backpack/cultpack
-	satchel = /obj/item/storage/backpack/cultpack
-	gloves =		/obj/item/clothing/gloves/fingerless
-	shoes = 		/obj/item/clothing/shoes/jackboots
-	backpack = 		/obj/item/storage/backpack/cultpack
-	satchel = 		/obj/item/storage/backpack/cultpack
-	r_hand = 		/obj/item/gun/ballistic/revolver/m29
-	r_pocket = /obj/item/flashlight/flare
-	backpack_contents = list(
-		/obj/item/ammo_box/m44=2, \
-		/obj/item/reagent_containers/food/drinks/flask=1, \
-		/obj/item/storage/fancy/candle_box, \
-		/obj/item/storage/bag/money/small/settler)
-
-/*--------------------------------------------------------------*/
-
 /datum/job/oasis/f13barkeep
 	title = "Barkeep"
 	flag = F13BARKEEP
@@ -598,6 +502,7 @@ Mayor
 			/datum/job/oasis,
 		),
 	)
+
 
 /datum/outfit/job/den/f13barkeep
 	name = "Barkeep"
@@ -669,6 +574,7 @@ Mayor
 		/datum/outfit/loadout/properlady,
 		/datum/outfit/loadout/propergent,
 		/datum/outfit/loadout/hombre,
+		/datum/outfit/loadout/singer,
 	)
 	access = list(ACCESS_BAR)
 	minimal_access = list(ACCESS_BAR)
@@ -757,8 +663,8 @@ Mayor
 	shoes = /obj/item/clothing/shoes/f13/cowboy
 	backpack_contents = list(/obj/item/ammo_box/a308 = 2,
 	)
-	
-/datum/outfit/loadout/secretary 
+/*
+/datum/outfit/loadout/secretary
 	name = "Secretary"
 	uniform = /obj/item/clothing/under/suit/black
 	glasses = /obj/item/clothing/glasses/regular/hipster
@@ -771,8 +677,8 @@ Mayor
 	/obj/item/gun/ballistic/automatic/pistol/pistol22 = 1,
 	/obj/item/ammo_box/magazine/m22 = 2,
 	)
-	///placeholder until a proper secretary role is added
-	
+	///we should find something to do with this
+*/
 /datum/outfit/loadout/singer
 	name = "Saloon Singer"
 	shoes = /obj/item/clothing/shoes/laceup
@@ -782,7 +688,7 @@ Mayor
 	/obj/item/clothing/gloves/color/white = 1,
 	/obj/item/melee/unarmed/brass = 1,
 	)
-	
+
 /*----------------------------------------------------------------
 --							Detective							--
 ----------------------------------------------------------------*/
@@ -824,7 +730,7 @@ Mayor
 	head = /obj/item/clothing/head/f13/det_hat_alt
 	shoes =  /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id/silver
-	l_pocket = /obj/item/storage/bag/money/small/settler
+	l_pocket = /obj/item/storage/bag/money/small/oasis
 	r_pocket = /obj/item/flashlight/flare
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
@@ -968,7 +874,6 @@ Mayor
 		return
 	ADD_TRAIT(H, TRAIT_TECHNOPHREAK, src)
 	ADD_TRAIT(H, TRAIT_GENERIC, src)
-	ADD_TRAIT(H, TRAIT_MASTER_GUNSMITH, src)
 
 /datum/outfit/job/den/f13shopkeeper/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()

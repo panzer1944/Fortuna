@@ -13,7 +13,7 @@
 	jobtype =	/datum/job/followers/
 	shoes =		/obj/item/clothing/shoes/sneakers/black
 	id =		null
-	ears =		/obj/item/radio/headset/headset_med
+	ears =		/obj/item/radio/headset/headset_followers
 	uniform =	/datum/outfit/job/followers/f13followers
 
 /datum/outfit/job/followers/f13followers
@@ -24,6 +24,7 @@
 	..()
 	if(visualsOnly)
 		return
+	H.mind.teach_crafting_recipe(/datum/crafting_recipe/set_vrboard/followers)
 
 //datum/outfit/job/followers/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 //	..()

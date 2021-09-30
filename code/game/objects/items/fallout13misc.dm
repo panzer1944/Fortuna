@@ -187,7 +187,6 @@
 	desc = "A flag depicting a stylised pink flower on a green background. It's the symbol of the town of Oasis."
 	icon_state = "oasisflag"
 	item_state = "oasisflag"
-	faction = "Oasis"
 
 /obj/item/flag/followers
 	name = "Followers of the Apocalypse flag"
@@ -202,6 +201,13 @@
 	icon_state = "locustflag"
 	item_state = "locustflag"
 	faction = "Locust"
+
+/obj/item/flag/yuma
+	name = "Yuma banner"
+	desc = "A banner depicting three rivers meeting at its center, overlaid with an ear of corn."
+	icon_state = "cornflag"
+	item_state = "cornflag"
+	faction = "Oasis"
 
 /obj/item/flag/vtcc
 	name = "Vault-Tec Cityscape Coalition flag"
@@ -220,7 +226,7 @@
 		if(do_after(user, 60, target = src))
 			var/obj/item/stack/sheet/leather/H = I
 			if(H.use(1))
-				var/flag = alert(user, "Please choose which faction flag you wish to create.", "NCR", "Legion", "Oasis", "BOS",)
+				var/flag = alert(user, "Please choose which faction flag you wish to create.", "NCR", "Legion", "Yuma", "BOS",)
 				switch(flag)
 					if("NCR")
 						name = "NCR flag"
@@ -234,11 +240,11 @@
 						icon_state = "legionflag"
 						item_state = "legionflag"
 						faction = "Legion"
-					if("Oasis")
-						name = "Oasis flag"
-						desc = "A flag depicting a stylised pink flower on a green background. It's the symbol of the town of Oasis."
-						icon_state = "oasisflag"
-						item_state = "oasisflag"
+					if("Yuma")
+						name = "Yuma flag"
+						desc = "A banner depicting three rivers meeting at its center, overlaid with an ear of corn."
+						icon_state = "cornflag"
+						item_state = "cornflag"
 						faction = "Oasis"
 					if("BOS")
 						name = "BOS flag"
@@ -315,19 +321,19 @@
 
 /obj/item/warpaint_bowl/attack(mob/living/M, mob/living/user, attackchain_flags, damage_multiplier)
 	if(!paint_type || !paint_color)
-		to_chat(user, SPAN_WARNING("You need to select a style first!"))
+		to_chat(user, span_warning("You need to select a style first!"))
 		return
 	if(!user.Adjacent(M) || !ishuman(M))
 		return ..()
 	var/mob/living/carbon/human/H = M
 	if((H.warpaint == paint_type) && (H.warpaint_color == paint_color))
-		to_chat(user, SPAN_WARNING("[H] is already painted with this style!"))
+		to_chat(user, span_warning("[H] is already painted with this style!"))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] starts painting [H] with [src]."), SPAN_NOTICE("You start painting [H] with [src]."))
+	user.visible_message(span_notice("[user] starts painting [H] with [src]."), span_notice("You start painting [H] with [src]."))
 	if(!do_mob(user, H, 10 SECONDS))
 		return
-	user.visible_message(SPAN_NOTICE("[user] applies warpaint onto [H]."), SPAN_NOTICE("You apply warpaint onto [H]."))
+	user.visible_message(span_notice("[user] applies warpaint onto [H]."), span_notice("You apply warpaint onto [H]."))
 
 	H.warpaint = paint_type
 	H.warpaint_color = paint_color

@@ -280,7 +280,7 @@ GLOBAL_VAR_INIT(vendor_cash, 0)
 						"<span class='notice'>You start repairing the vending machine.</span>", \
 						"<span class='italics'>You hear welding.</span>")
 		if(OtherItem.use_tool(src, user, 100, volume=50, amount=20))
-			to_chat(user, SPAN_NOTICE("You repair the vending machine."))
+			to_chat(user, span_notice("You repair the vending machine."))
 			stat &= ~BROKEN
 			obj_integrity = max_integrity
 
@@ -543,6 +543,50 @@ GLOBAL_VAR_INIT(vendor_cash, 0)
 		new /datum/data/wasteland_equipment("Surgery for Wastelanders",		/obj/item/book/granter/trait/lowsurgery,							500)
 		)
 
+/obj/machinery/mineral/wasteland_vendor/khanchem
+	name = "P.A.P.A"
+	icon_state = "med_idle"
+	prize_list = list(
+		new /datum/data/wasteland_equipment("Jet",							/obj/item/reagent_containers/pill/patch/jet,						30),
+		new /datum/data/wasteland_equipment("Psycho",						/obj/item/reagent_containers/hypospray/medipen/psycho,				30),
+		new /datum/data/wasteland_equipment("Turbo",						/obj/item/reagent_containers/pill/patch/turbo,						30),
+		new /datum/data/wasteland_equipment("Mentats",						/obj/item/storage/pill_bottle/chem_tin/mentats,						30),
+		new /datum/data/wasteland_equipment("Buffout",						/obj/item/storage/pill_bottle/chem_tin/buffout,						30),
+		new /datum/data/wasteland_equipment("Med-X",						/obj/item/reagent_containers/syringe/medx,							30),
+		new /datum/data/wasteland_equipment("Fixer",						/obj/item/storage/pill_bottle/chem_tin/fixer,						200)
+		)
+	highpop_list = list(
+		new /datum/data/wasteland_equipment("Jet",							/obj/item/reagent_containers/pill/patch/jet,						30),
+		new /datum/data/wasteland_equipment("Psycho",						/obj/item/reagent_containers/hypospray/medipen/psycho,				30),
+		new /datum/data/wasteland_equipment("Turbo",						/obj/item/reagent_containers/pill/patch/turbo,						30),
+		new /datum/data/wasteland_equipment("Mentats",						/obj/item/storage/pill_bottle/chem_tin/mentats,						30),
+		new /datum/data/wasteland_equipment("Buffout",						/obj/item/storage/pill_bottle/chem_tin/buffout,						30),
+		new /datum/data/wasteland_equipment("Med-X",						/obj/item/reagent_containers/syringe/medx,							30),
+		new /datum/data/wasteland_equipment("Fixer",						/obj/item/storage/pill_bottle/chem_tin/fixer,						200)
+		)
+
+/obj/machinery/mineral/wasteland_vendor/denchem
+	name = "Chem Dispenser"
+	icon_state = "med_idle"
+	prize_list = list(
+		new /datum/data/wasteland_equipment("Jet",							/obj/item/reagent_containers/pill/patch/jet,						60),
+		new /datum/data/wasteland_equipment("Psycho",						/obj/item/reagent_containers/hypospray/medipen/psycho,				60),
+		new /datum/data/wasteland_equipment("Turbo",						/obj/item/reagent_containers/pill/patch/turbo,						60),
+		new /datum/data/wasteland_equipment("Mentats",						/obj/item/storage/pill_bottle/chem_tin/mentats,						60),
+		new /datum/data/wasteland_equipment("Buffout",						/obj/item/storage/pill_bottle/chem_tin/buffout,						60),
+		new /datum/data/wasteland_equipment("Med-X",						/obj/item/reagent_containers/syringe/medx,							60),
+		new /datum/data/wasteland_equipment("Fixer",						/obj/item/storage/pill_bottle/chem_tin/fixer,						200)
+		)
+	highpop_list = list(
+		new /datum/data/wasteland_equipment("Jet",							/obj/item/reagent_containers/pill/patch/jet,						60),
+		new /datum/data/wasteland_equipment("Psycho",						/obj/item/reagent_containers/hypospray/medipen/psycho,				60),
+		new /datum/data/wasteland_equipment("Turbo",						/obj/item/reagent_containers/pill/patch/turbo,						60),
+		new /datum/data/wasteland_equipment("Mentats",						/obj/item/storage/pill_bottle/chem_tin/mentats,						60),
+		new /datum/data/wasteland_equipment("Buffout",						/obj/item/storage/pill_bottle/chem_tin/buffout,						60),
+		new /datum/data/wasteland_equipment("Med-X",						/obj/item/reagent_containers/syringe/medx,							60),
+		new /datum/data/wasteland_equipment("Fixer",						/obj/item/storage/pill_bottle/chem_tin/fixer,						200)
+		)
+
 /obj/machinery/mineral/wasteland_vendor/weapons
 	name = "Wasteland Vending Machine - Weapons"
 	icon_state = "weapon_idle"
@@ -609,8 +653,7 @@ GLOBAL_VAR_INIT(vendor_cash, 0)
 		new /datum/data/wasteland_equipment("Explorer satchel",				/obj/item/storage/backpack/satchel/explorer,						25),
 		new /datum/data/wasteland_equipment("Spray bottle",					/obj/item/reagent_containers/spray,									35),
 		new /datum/data/wasteland_equipment("Bottle of E-Z-Nutrient",		/obj/item/reagent_containers/glass/bottle/nutrient/ez,				40),
-		new /datum/data/wasteland_equipment("Craftsmanship Monthly",		/obj/item/book/granter/trait/techno,								600),
-		new /datum/data/wasteland_equipment("Tinkering for Wastelanders",	/obj/item/book/granter/trait/tinkering,								600)
+		new /datum/data/wasteland_equipment("Craftsmanship Monthly",		/obj/item/book/granter/trait/techno,								600)
 		)
 	highpop_list = list(
 		new /datum/data/wasteland_equipment("Drinking glass",				/obj/item/reagent_containers/food/drinks/drinkingglass,				5),
@@ -618,9 +661,10 @@ GLOBAL_VAR_INIT(vendor_cash, 0)
 		new /datum/data/wasteland_equipment("Explorer satchel",				/obj/item/storage/backpack/satchel/explorer,						25),
 		new /datum/data/wasteland_equipment("Spray bottle",					/obj/item/reagent_containers/spray,									35),
 		new /datum/data/wasteland_equipment("Bottle of E-Z-Nutrient",		/obj/item/reagent_containers/glass/bottle/nutrient/ez,				40),
-		new /datum/data/wasteland_equipment("Craftsmanship Monthly",		/obj/item/book/granter/trait/techno,								600),
-		new /datum/data/wasteland_equipment("Tinkering for Wastelanders",	/obj/item/book/granter/trait/tinkering,								600)
+		new /datum/data/wasteland_equipment("Craftsmanship Monthly",		/obj/item/book/granter/trait/techno,								600)
 		)
+
+/* These are shit, don't add them.
 
 /obj/machinery/mineral/wasteland_vendor/camp
 	name = "Wasteland Camp-O-Vend"
@@ -653,7 +697,7 @@ GLOBAL_VAR_INIT(vendor_cash, 0)
 		new /datum/data/wasteland_equipment("Keep your C.A.M.P. Clean: Trashbag",		/obj/item/storage/bag/trash,							30),
 		new /datum/data/wasteland_equipment("Keep your C.A.M.P. Clean: Soap",			/obj/item/soap/homemade,								25)
 		)
-
+*/
 
 /obj/machinery/mineral/wasteland_vendor/pipboy
 	name = "Wasteland Pip-N-Walk"
@@ -681,14 +725,12 @@ GLOBAL_VAR_INIT(vendor_cash, 0)
 		new /datum/data/wasteland_equipment("Random manual",					/obj/item/book/manual/random,									40),
 		new /datum/data/wasteland_equipment("Box of ingredients - American",	/obj/item/storage/box/ingredients/american,						80),
 		new /datum/data/wasteland_equipment("Music box",						/obj/item/holodisk/musicbox,									400),
-		new /datum/data/wasteland_equipment("Advanced Armor and You",			/obj/item/book/granter/trait/pa_wear,							600),
 		new /datum/data/wasteland_equipment("???",								/obj/item/toy/syndicateballoon,									3000)
 		)
 	highpop_list = list(
 		new /datum/data/wasteland_equipment("Random manual",					/obj/item/book/manual/random,									40),
 		new /datum/data/wasteland_equipment("Box of ingredients - American",	/obj/item/storage/box/ingredients/american,						80),
 		new /datum/data/wasteland_equipment("Music box",						/obj/item/holodisk/musicbox,									400),
-		new /datum/data/wasteland_equipment("Advanced Armor and You",			/obj/item/book/granter/trait/pa_wear,							600),
 		new /datum/data/wasteland_equipment("???",								/obj/item/toy/syndicateballoon,									3000)
 		)
 

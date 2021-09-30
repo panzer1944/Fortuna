@@ -804,7 +804,7 @@
 	granted_trait = TRAIT_BIG_LEAGUES
 	traitname = "big_leagues"
 	remarks = list("Grognak hit the Death Knight only once, but that was enough.", "Grognak is surprisingly agile, never committing too heavily on an attack, dancing between his enemies.", "Grognak isn't good at talking, but he knows it has its place. He has friends to talk for him.", "Other barbarians might change their weapons, but Grognak could never leave his beloved axe.")
-	
+
 /obj/item/book/granter/trait/lowsurgery
 	name = "First Aid Pamphlet"
 	desc = "A flimsy collection of vital tips and tricks for the average American with a sudden injury."
@@ -812,6 +812,12 @@
 	granted_trait = TRAIT_SURGERY_LOW
 	traitname = "minor surgery"
 	remarks = list("Keep your hands and any injuries clean!", "While bandages help to seal a wound, they do not heal a wound.", "Remain calm, focus on the task at hand, stop the bleeding.", "An open wound can lead to easy infection of said wound.", "Keep track of your home's first aid kit, restock used components regularly.", "If a body part has been lost, ice and transport it with the injured to a hospital.",)
+
+/obj/item/book/granter/trait/lowsurgery/already_known(mob/user)
+	if(HAS_TRAIT(user, TRAIT_SURGERY_MID) || HAS_TRAIT(user, TRAIT_SURGERY_HIGH))
+		to_chat(user, "<span class ='notice'>This book is too basic for you!")
+		return TRUE
+	return ..()
 
 /obj/item/book/granter/trait/midsurgery
 	name = "D.C. Journal of Internal Medicine"
@@ -821,13 +827,11 @@
 	traitname = "intermediate surgery"
 	remarks = list("Sterilization is essential before and after surgery.", "Keep track of all your tools, double check body cavities.", "Ensure complete focus while operating on the patient.", "Cauterize incisions once the operation concludes.", "Spare organs and blood must be kept at a low temperature.", "Most prosthesis come with significant trade-offs, and maintenance costs.",)
 
-/obj/item/book/granter/trait/tinkering
-	name = "US Army: Weapon Maintenance"
-	desc = "A well-worn pamphlet from Fort Polk, useful tips and tricks compete for space with complaints from a small arms repairman."
-	oneuse = TRUE
-	granted_trait = TRAIT_MASTER_GUNSMITH
-	traitname = "tinkering"
-	remarks = list("There are no thieves in the army, everyone's just trying to get their shit back.", "As soon as you think you've heard the dumbest way a man's broken his rifle, the door to your office will open.", "Act like you're mediocre, because otherwise they'll ask you to do extra work.", "Third time's the charm, but that's about it.", "Ensure your firearm is emptied before any maintenance work.")
+/obj/item/book/granter/trait/midsurgery/already_known(mob/user)
+	if(HAS_TRAIT(user, TRAIT_SURGERY_HIGH))
+		to_chat(user, "<span class ='notice'>This book is too basic for you!")
+		return TRUE
+	return ..()
 
 /obj/item/book/granter/trait/techno
 	name = "Dean's Electronics"
@@ -880,7 +884,7 @@
 	time_per_page = 0
 
 /obj/item/book/granter/trait/selection/attack_self(mob/user)
-	var/list/choices = list("Big Book of Science","Dean's Electronics","Grognak the Barbarian","First Aid Pamphlet","US Army: Weapon Maintenance","Wasteland Survival Guide")
+	var/list/choices = list("Big Book of Science","Dean's Electronics","Grognak the Barbarian","First Aid Pamphlet","Wasteland Survival Guide")
 	if(granted_trait == null)
 		var/choice = input("Choose a trait:") in choices
 		switch(choice)
@@ -907,10 +911,6 @@
 				granted_trait = TRAIT_BIG_LEAGUES
 				traitname = "hitting things"
 				remarks = list("Grognak hit the Death Knight only once, but that was enough.", "Grognak is surprisingly agile, never committing too heavily on an attack, dancing between his enemies.", "Grognak isn't good at talking, but he knows it has its place. He has friends to talk for him.", "Other barbarians might change their weapons, but Grognak could never leave his beloved axe.")
-			if("US Army: Weapon Maintenance")
-				granted_trait = TRAIT_MASTER_GUNSMITH
-				traitname = "tinkering"
-				remarks = list("There are no thieves in the army, everyone's just trying to get their shit back.", "As soon as you think you've heard the dumbest way a man's broken his rifle, the door to your office will open.", "Act like you're mediocre, because otherwise they'll ask you to do extra work.", "Third time's the charm, but that's about it.", "Ensure your firearm is emptied before any maintenance work.")
 	return ..()
 
 

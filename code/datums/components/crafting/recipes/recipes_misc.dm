@@ -52,42 +52,6 @@
 //Scavenging and Tinkering//
 ///////////////////////////
 
-/datum/crafting_recipe/repair_kit
-	name = "Armor repair kit"
-	result = /obj/item/repair_kit
-	time = 30
-	reqs = list(/obj/item/crafting = 3, /obj/item/stack/crafting/metalparts = 1)
-	tools = list(TOOL_WORKBENCH)
-	category = CAT_CRAFTING
-	subcategory = CAT_SCAVENGING
-
-/datum/crafting_recipe/repair_kit_pa
-	name = "Power armor repair kit"
-	result = /obj/item/repair_kit/pa
-	time = 30
-	reqs = list(/obj/item/crafting = 7, /obj/item/stack/crafting/goodparts = 3)
-	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WORKBENCH)
-	category = CAT_CRAFTING
-	subcategory = CAT_SCAVENGING
-
-/datum/crafting_recipe/experimental
-	name = "Tinker"
-	result = /obj/item/experimental
-	time = 30
-	reqs = list(/obj/item/crafting = 5)
-	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WORKBENCH)
-	category = CAT_CRAFTING
-	subcategory = CAT_SCAVENGING
-
-/datum/crafting_recipe/experimentalinvent
-	name = "Invent"
-	result = /obj/item/invention
-	time = 30
-	reqs = list(/obj/item/crafting = 5)
-	tools = list(TOOL_SCREWDRIVER, TOOL_MULTITOOL, TOOL_WORKBENCH)
-	category = CAT_CRAFTING
-	subcategory = CAT_SCAVENGING
-
 /datum/crafting_recipe/rags
 	name = "Cut clothing into rags"
 	result = /obj/item/stack/sheet/cloth/three
@@ -112,7 +76,38 @@
 		return FALSE
 	return TRUE
 
+/datum/crafting_recipe/reset_vrboard
+	name = "Reset VR Sleeper Board"
+	time = 15
+	reqs = list(/obj/item/circuitboard/machine/vr_sleeper = 1)
+	tools = list(/obj/item/multitool)
+	result = /obj/item/circuitboard/machine/vr_sleeper
+	category = CAT_CRAFTING
+	subcategory = CAT_SCAVENGING
 
+/datum/crafting_recipe/set_vrboard
+	category = CAT_CRAFTING
+	subcategory = CAT_SCAVENGING
+	time = 15
+	always_availible = FALSE
+
+/datum/crafting_recipe/set_vrboard/bos
+	name = "Modify VR Sleeper Board (BoS)"
+	result = /obj/item/circuitboard/machine/vr_sleeper/bos
+	reqs = list(/obj/item/circuitboard/machine/vr_sleeper = 1)
+	tools = list(/obj/item/multitool)
+
+/datum/crafting_recipe/set_vrboard/followers
+	name = "Modify VR Sleeper Board (Followers)"
+	result = /obj/item/circuitboard/machine/vr_sleeper/followers
+	reqs = list(/obj/item/circuitboard/machine/vr_sleeper = 1)
+	tools = list(/obj/item/multitool)
+
+/datum/crafting_recipe/set_vrboard/den
+	name = "Modify VR Sleeper Board (Den)"
+	result = /obj/item/circuitboard/machine/vr_sleeper/den
+	reqs = list(/obj/item/circuitboard/machine/vr_sleeper = 1)
+	tools = list(/obj/item/multitool)
 
 //////////////////////
 //Burial & Execution//

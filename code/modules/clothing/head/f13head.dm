@@ -208,7 +208,7 @@
 			return BLOCK_SHOULD_REDIRECT | BLOCK_REDIRECTED | BLOCK_SUCCESS | BLOCK_PHYSICAL_INTERNAL
 	return ..()
 
-//Power Armor
+//Power Armour
 
 /obj/item/clothing/head/helmet/f13/power_armor
 	cold_protection = HEAD
@@ -242,13 +242,12 @@
 	var/armor_block_chance = 0
 	protected_zones = list(BODY_ZONE_HEAD)
 	var/deflection_chance = 0
-	var/armor_block_threshold = 0.3 //projectiles below this will deflect
+	var/armor_block_threshold = 0.2 //projectiles below this will deflect
 	var/melee_block_threshold = 30
 	var/dmg_block_threshold = 42
 	var/powerLevel = 7000
 	var/powerMode = 3
 	var/powered = TRUE
-	repair_kit = /obj/item/repair_kit/pa
 
 /obj/item/clothing/head/helmet/f13/power_armor/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -343,8 +342,6 @@
 /obj/item/clothing/head/helmet/f13/power_armor/run_block(mob/living/owner, atom/object, damage, attack_text, attack_type, armour_penetration, mob/attacker, def_zone, final_block_chance, list/block_return)
 	. = ..()
 	if(damage >= src.dmg_block_threshold && check_armor_penetration(object) >= 0)
-		return
-	if(src.armor_durability<60)
 		return
 	if(check_armor_penetration(object) <= src.armor_block_threshold && (attack_type == ATTACK_TYPE_PROJECTILE) && (def_zone in protected_zones))
 		if(prob(armor_block_chance))
@@ -478,7 +475,7 @@
 	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	armor_block_chance = 70
 	deflection_chance = 10 //35% chance to block damage from blockable bullets and redirect the bullet at a random angle. Less overall armor compared to T-60, but higher deflection.
-	armor_block_threshold = 0.35
+	armor_block_threshold = 0.25
 	melee_block_threshold = 35
 
 /obj/item/clothing/head/helmet/f13/power_armor/t51b/update_icon_state()
@@ -517,7 +514,7 @@
 	armor_block_chance = 80
 	deflection_chance = 15 //20% chance to block damage from blockable bullets and redirect the bullet at a random angle. Same deflection as T-45 due to it having the same general shape.
 	melee_block_threshold = 40
-	armor_block_threshold = 0.4
+	armor_block_threshold = 0.3
 
 /obj/item/clothing/head/helmet/f13/power_armor/t60/update_icon_state()
 	icon_state = "t60helmet[light_on]"
@@ -799,6 +796,13 @@
 	color = "#999999"
 	armor = list("tier" = 0)
 
+/obj/item/clothing/head/f13/riderw
+	name = "Reinforced Rider Helmet" //Not raider. Rider. //Count up your sins
+	desc = "(IV) It's a fancy two-tone metal helmet. It's been lined with additional plating and given a fresh coat of paint."
+	icon_state = "riderw"
+	item_state = "riderw"
+	armor = list("tier" = 4)
+
 //Soft caps
 /obj/item/clothing/head/soft/f13
 	flags_inv = HIDEEARS|HIDEHAIR
@@ -959,15 +963,21 @@
 	item_state = "ranger_grey_hat"
 	armor = list("tier" = 2, "energy" = 15, "bomb" = 0, "bio" = 0, "rad" = 70, "fire" = 70, "acid" = 15)
 	flags_inv = HIDEEARS|HIDEHAIR
-	
+
 /obj/item/clothing/head/f13/ranger_hat/banded
 	name = "banded cowboy hat"
 	desc = "(II) A grey cowboy hat with a hat band decorated with brassen rings."
 	icon_state = "ranger_banded_hat"
 	item_state = "ranger_banded_hat"
-	
+
 /obj/item/clothing/head/f13/ranger_hat/tan
 	name = "tan cowboy hat"
 	desc = "(II) A thick tanned leather hat, with a Montana Peak crease."
 	icon_state = "ranger_tan_hat"
 	item_state = "ranger_tan_hat"
+
+/obj/item/clothing/head/f13/chinahelmetcosmetic
+	name = "dysfunctional chinese stealth helmet"
+	desc = "(II) A bright yellow visor in a timelessly infamous shape makes this helmet immediately recognizable. It's non-ballistic, and it's power unit for the HUD has been long since removed."
+	icon_state = "stealthhelmet"
+	item_state = "stealthhelmet"

@@ -920,6 +920,11 @@
 	item_state = "card-doctor"
 	assignment = "citizenship permit"
 	access = list(ACCESS_BAR)
+	
+/obj/item/card/id/dogtag/MDfakepermit
+	name = "faded medical license"
+	desc = "a revoked medical license. This is why we do not remove people's skeletons "
+	access = list()
 
 /obj/item/card/id/dogtag/town/ncr
 	name = "NCR citizenship permit"
@@ -984,6 +989,11 @@
 	name = "sergeant's tags"
 	desc = "A chevron decorated dog tag showing NCO-ship."
 	icon_state = "ncrdogtagsergeant"
+
+/obj/item/card/id/dogtag/ncrrep
+	name = "representative's tags"
+	desc = "A special dog tag belonging to the NCR representative."
+	icon_state = "ncrdogtagofficer"
 
 /obj/item/card/id/dogtag/ncrlieutenant
 	name = "lieutenant's tags"
@@ -1251,3 +1261,4 @@
 	item_state = "card-id_leg"
 	assignment = "US dogtags"
 	access = list(ACCESS_ENCLAVE)
+

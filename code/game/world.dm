@@ -22,8 +22,6 @@ GLOBAL_LIST(topic_status_cache)
 	world.Profile(PROFILE_START)
 	log_world("World loaded at [TIME_STAMP("hh:mm:ss", FALSE)]!")
 
-	AUXTOOLS_CHECK(AUXMAPTICK)
-
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
 
 	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
@@ -118,6 +116,7 @@ GLOBAL_LIST(topic_status_cache)
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_pda_log = "[GLOB.log_directory]/pda.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
+	GLOB.world_terminal_log = "[GLOB.log_directory]/terminalmsg.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
 	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
@@ -143,6 +142,7 @@ GLOBAL_LIST(topic_status_cache)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_pda_log)
 	start_log(GLOB.world_telecomms_log)
+	start_log(GLOB.world_terminal_log)
 	start_log(GLOB.world_manifest_log)
 	start_log(GLOB.world_href_log)
 	start_log(GLOB.world_qdel_log)
@@ -276,7 +276,6 @@ GLOBAL_LIST(topic_status_cache)
 /world/Del()
 	shutdown_logging() // makes sure the thread is closed before end, else we terminate
 	AUXTOOLS_SHUTDOWN(AUXMOS)
-	AUXTOOLS_SHUTDOWN(AUXMAPTICK)
 	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 	if (debug_server)
 		call(debug_server, "auxtools_shutdown")()
@@ -292,7 +291,7 @@ GLOBAL_LIST(topic_status_cache)
 	if (!GLOB.enter_allowed)
 		features += "closed"*/
 
-	var/s = ""
+	var/list/s = list()
 	var/hostedby
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
@@ -307,8 +306,8 @@ GLOBAL_LIST(topic_status_cache)
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
-	s += "<a href=\"https://discord.gg/a5Nb6vgVcG\">" //Change this to wherever you want the hub to link to. CIT CHANGE - links to cit's website on the hub
-	s += "F13 Discord"  //Replace this with something else. Or ever better, delete it and uncomment the game version. CIT CHANGE - modifies the hub entry link
+	s += "<a href=\"https://discord.gg/fortuna13\">" //Change this to wherever you want the hub to link to. CIT CHANGE - links to cit's website on the hub
+	s += "Discord"  //Replace this with something else. Or ever better, delete it and uncomment the game version. CIT CHANGE - modifies the hub entry link
 	s += "</a>"
 	s += ")\]" //CIT CHANGE - encloses the server title in brackets to make the hub entry fancier
 	s += "<br>[CONFIG_GET(string/servertagline)]<br>" //CIT CHANGE - adds a tagline!
@@ -332,7 +331,7 @@ GLOBAL_LIST(topic_status_cache)
 	if (features)
 		s += "\[[jointext(features, ", ")]" //CIT CHANGE - replaces the colon here with a left bracket
 
-	status = s
+	status = s.Join()
 
 /world/proc/update_hub_visibility(new_visibility)
 	if(new_visibility == GLOB.hub_visibility)

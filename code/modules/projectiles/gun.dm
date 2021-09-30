@@ -39,7 +39,7 @@ KEYWORDS
 	spread = 7-12
 
 	REPEATER	
-	fire_delay = 7
+	fire_delay = 6
 	spread = 0
 
 	DOUBLE BARREL
@@ -247,7 +247,6 @@ ATTACHMENTS
 	var/dualwield_spread_mult = 1		//dualwield spread multiplier
 
 	var/worn_out = FALSE	//If true adds overlay with suffix _worn, and a slight malus to stats
-	//var/tinkered = 0
 	/// Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.
 //	var/projectile_damage_multiplier = 1
 
@@ -464,7 +463,7 @@ ATTACHMENTS
 		return FALSE
 
 /obj/item/gun/CheckAttackCooldown(mob/user, atom/target)
-	if((user.a_intent == INTENT_HARM) && user.Adjacent(target))		//melee
+	if((user.a_intent == INTENT_HARM || INTENT_HELP) && user.Adjacent(target))		//melee
 		return user.CheckActionCooldown(CLICK_CD_MELEE)
 	return user.CheckActionCooldown(get_clickcd())
 
@@ -654,9 +653,9 @@ ATTACHMENTS
 				return
 			burst_improvement = T
 			src.desc += " It has a modified burst cam installed."
-			src.burst_size += 1
+			src.burst_size += 2
 			src.spread += 5
-			src.burst_shot_delay += 0.5
+			src.burst_shot_delay += 0.25
 			to_chat(user, "<span class='notice'>You attach \the [T] to \the [src].</span>")
 			update_icon()
 			return

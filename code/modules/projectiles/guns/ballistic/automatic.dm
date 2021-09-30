@@ -249,7 +249,7 @@
 	init_mag_type = /obj/item/ammo_box/magazine/m10mm_adv/ext
 	fire_delay = 3.75
 	can_attachments = TRUE
-	suppressor_state = "10mm_suppressor" //activate if sprited 
+	suppressor_state = "10mm_suppressor" //activate if sprited
 	suppressor_x_offset = 30
 	suppressor_y_offset = 16
 	actions_types = list(/datum/action/item_action/toggle_firemode)
@@ -258,7 +258,7 @@
 /obj/item/gun/ballistic/automatic/smg/smg10mm/worn
 	name = "worn-out 10mm submachine gun"
 	desc = "Mass-produced weapon from the Great War, this one has seen use ever since. Grip is wrapped in tape to keep the plastic from crumbling, the metals are oxidizing, but the gun still works."
-	init_mag_type = /obj/item/ammo_box/magazine/m10mm_adv/simple
+	init_mag_type = /obj/item/ammo_box/magazine/m10mm_adv/ext
 	worn_out = TRUE
 
 /obj/item/gun/ballistic/automatic/smg/smg10mm/burst_select()
@@ -458,7 +458,7 @@
 	fire_sound = 'sound/f13weapons/varmint_rifle.ogg'
 
 
-//M1/n Carbine				Keywords: NCR, 10mm, Semi-auto, 12/24 rounds, Long barrel, No autosear, No tinker, Damage +1
+//M1/n Carbine				Keywords: NCR, 10mm, Semi-auto, 12/24 rounds, Long barrel, No autosear, Damage +1
 /obj/item/gun/ballistic/automatic/m1carbine/m1n
 	name = "m1/n carbine"
 	desc = "An M1 Carbine with markings identifying it as issued to the NCR Mojave Expedtionary Force. Looks beat up but functional."
@@ -466,8 +466,7 @@
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "ncr-m1carbine"
 	item_state = "rifle"
-	extra_damage = 3 //slightly higher damage per shot to make up for not being able to (sic: tinker) it. (Adjusting it down to be in line with all the other gun stats)
-	untinkerable = TRUE
+	extra_damage = 3
 
 
 //M1A1 Carbine				Keywords: 10mm, Semi-auto, 12/24 rounds, Long barrel, Folding stock.
@@ -509,12 +508,85 @@
 //SEMI-AUTO RIFLES//
 ////////////////////
 
+
+//Varmint rifle								Keywords: 5.56, 10/20/30 round magazine, Reduced damage
+/obj/item/gun/ballistic/automatic/varmint
+	name = "varmint rifle"
+	desc = "A simple bolt action rifle in 5.56mm calibre. Easy to use and maintain."
+	icon_state = "varmint"
+	item_state = "varmintrifle"
+	force = 18
+	mag_type = /obj/item/ammo_box/magazine/m556/rifle
+	init_mag_type = /obj/item/ammo_box/magazine/m556/rifle/small
+	fire_delay = 9
+	burst_size = 1
+	spread = 0
+	extra_damage = 6
+	can_bayonet = FALSE
+	semi_auto = TRUE
+	automatic_burst_overlay = FALSE
+	scope_state = "scope_short"
+	scope_x_offset = 4
+	scope_y_offset = 12
+	can_suppress = TRUE
+	suppressor_state = "rifle_suppressor"
+	suppressor_x_offset = 27
+	suppressor_y_offset = 31
+	fire_sound = 'sound/f13weapons/varmint_rifle.ogg'
+
+//De Lisle carbine							Keywords: Pre-war, 9mm, Long barrel, Suppressed
+/obj/item/gun/ballistic/automatic/delisle
+	name = "De Lisle carbine"
+	desc = "A integrally suppressed carbine, known for being one of the quietest firearms ever made. Chambered in 9mm."
+	icon_state = "delisle"
+	item_state = "varmintrifle"
+	mag_type = /obj/item/ammo_box/magazine/m9mmds
+	extra_damage = 9
+	extra_penetration = 0.05
+	fire_delay = 9
+	burst_size = 1
+	spread = 0
+	can_scope = FALSE
+	can_unsuppress = FALSE
+	suppressed = 1
+	fire_sound = 'sound/weapons/Gunshot_large_silenced.ogg'
+
+//Commando carbine (BoS De Lisle variant)							Keywords: BoS, .45 ACP, 12 round magazine, Long barrel, Suppressed
+/obj/item/gun/ballistic/automatic/delisle/commando
+	name = "commando carbine"
+	desc = "A integrally suppressed carbine, known for being one of the quietest firearms ever made. This modified version is often used by the Brotherhood of Steel. Its stock has been replaced by post-war polymer furniture, with space to mount a scope. Chambered in .45 ACP."
+	icon_state = "commando"
+	item_state = "commando"
+	mag_type = /obj/item/ammo_box/magazine/m45exp
+	can_scope = TRUE
+	semi_auto = TRUE
+	automatic_burst_overlay = FALSE
+	scope_state = "scope_medium"
+	scope_x_offset = 6
+	scope_y_offset = 14
+
+//Ratslayer									Keywords: UNIQUE, 5.56, 10/20/30 round magazine, Suppressed, Scoped, Extra damage +3
+/obj/item/gun/ballistic/automatic/varmint/ratslayer
+	name = "Ratslayer"
+	desc = "A modified varmint rifle with better stopping power, a scope, and suppressor. Oh, don't forget the sick paint job."
+	icon_state = "ratslayer"
+	item_state = "ratslayer"
+	extra_damage = 10
+	extra_penetration = 0.1
+	suppressed = 1
+	zoomable = TRUE
+	zoom_amt = 10
+	zoom_out_amt = 13
+	can_scope = FALSE
+	fire_sound = 'sound/weapons/Gunshot_large_silenced.ogg'
+
 //Service rifle			Keywords: NCR, 5.56mm, Semi-auto, 20 (10-50) round magazine
 /obj/item/gun/ballistic/automatic/service
 	name = "service rifle"
 	desc = "A 5.56x45 semi-automatic service rifle manufactured by the NCR and issued to all combat personnel."
 	icon_state = "service_rifle"
 	item_state = "servicerifle"
+	extra_damage = 4
 	mag_type = /obj/item/ammo_box/magazine/m556/rifle
 	fire_delay = 4.5
 	burst_size = 1
@@ -535,8 +607,8 @@
 	icon_state = "alr15"
 	item_state = "alr15"
 	mag_type = /obj/item/ammo_box/magazine/m556/rifle
-	fire_delay = 4.5
-	burst_size = 1
+	fire_delay = 5.5
+	burst_size = 2
 	spread = 1
 	can_attachments = FALSE
 	automatic_burst_overlay = FALSE
@@ -553,27 +625,29 @@
 	name = "scout carbine"
 	desc = "A cut down version of the standard-issue service rifle tapped with mounting holes for a scope. Shorter barrel, lower muzzle velocity."
 	icon_state = "scout_carbine"
-	extra_damage = -2
+	extra_damage = 2
 	fire_delay = 4
-	spread = 3
+	spread = 1
 	can_scope = TRUE
 	scope_state = "scope_short"
 	scope_x_offset = 4
 	scope_y_offset = 15
-	suppressor_x_offset = 26
+	suppressor_x_offset = 26	
 	suppressor_y_offset = 28
 
 
-//Police rifle			Keywords: OASIS, 5.56mm, Semi-auto, 30 (10-50) round magazine
+//Police rifle			Keywords: OASIS, 5.56mm, Semi-auto, 20 (10-50) round magazine
 /obj/item/gun/ballistic/automatic/marksman/policerifle
-	name = "Police  rifle"
-	desc = "This old pre-war rifle made for law enforcement has been passed down generations in the Oasis Police Department, carefully repaired and rebuilt whenever damaged. Dried and crumbling polymers have been replaced with wood and reinforcing strips of leather, the black finish worn down a century ago, but it still works, as good as ever."
+	name = "Police Rifle"
+	desc = "A pre-war Rifle that has been constantly repaired and rebuilt by the Oasis Police Department. Held together by duct tape and prayers, it somehow still shoots."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	lefthand_file = 'icons/fallout/onmob/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/fallout/onmob/weapons/guns_righthand.dmi'
 	icon_state = "rifle-police"
 	item_state = "assault_carbine"
-	init_mag_type = /obj/item/ammo_box/magazine/m556/rifle/extended
+	init_mag_type = /obj/item/ammo_box/magazine/m556/rifle
+	extra_damage = -1
+	spread = 1.1
 	fire_delay = 4.2
 	can_suppress = FALSE
 	can_scope = TRUE
@@ -587,7 +661,8 @@
 	icon_state = "marksman_rifle"
 	item_state = "marksman"
 	mag_type = /obj/item/ammo_box/magazine/m556/rifle
-	fire_delay = 4
+	fire_delay = 4.2
+	extra_damage = 6
 	burst_size = 1
 	spread = 1
 	can_attachments = TRUE
@@ -617,6 +692,7 @@
 	item_state = "308"
 	force = 20
 	mag_type = /obj/item/ammo_box/magazine/m762
+	extra_damage = 7
 	burst_size = 1
 	fire_delay = 5
 	spread = 1
@@ -746,10 +822,11 @@
 	icon_state = "sniper_rifle"
 	item_state = "sniper_rifle"
 	mag_type = /obj/item/ammo_box/magazine/w308
-	fire_delay = 7
+	fire_delay = 10
 	burst_size = 1
-	extra_speed = 500
-	extra_penetration = 0.1
+	extra_speed = 800
+	extra_penetration = 0.2
+	extra_damage = 10
 	zoom_amt = 10
 	zoom_out_amt = 13
 	semi_auto = TRUE
@@ -1137,7 +1214,7 @@
 	slot_flags = SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/m2mm
 	burst_size = 1
-	fire_delay = 15
+	fire_delay = 12
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 13

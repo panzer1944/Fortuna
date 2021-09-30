@@ -85,6 +85,18 @@
 	semi_auto = FALSE
 	can_automatic = FALSE
 
+//Crusader pistol
+/obj/item/gun/ballistic/automatic/pistol/n99/crusader
+	name = "\improper Crusader pistol"
+	desc = "A large-framed N99 pistol emblazoned with the colors and insignia of the Brotherhood of Steel. It feels heavy in your hand."
+	extra_penetration = 0.1
+	extra_damage = 2
+	force = 18
+	icon_state = "crusader"
+	item_state = "crusader"
+	can_attachments = FALSE
+	can_automatic = FALSE
+
 
 //Type 17								Keywords: 10mm, Semi-auto, 12/24 round magazine. Special modifiers: damage +1, spread +1
 /obj/item/gun/ballistic/automatic/pistol/type17
@@ -127,7 +139,7 @@
 	name = "Sig P220"
 	desc = "The P220 Sig Sauer. A Swiss designed pistol that is compact and has a good rate of fire."
 	icon_state = "sig"
-	w_class = WEIGHT_CLASS_SMALL 
+	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/m9mm
 	fire_delay = 3
 	can_attachments = TRUE
@@ -135,6 +147,16 @@
 	suppressor_x_offset = 30
 	suppressor_y_offset = 20
 	fire_sound = 'sound/f13weapons/9mm.ogg'
+
+//side grade to the peacemaker 		    Keywords: OASIS, 9mm, Semi-auto, +5 damage, 10 round magazine, 0 spread, faster rate of fire, bullet speed +100, probably needs a new sprite
+/obj/item/gun/ballistic/automatic/pistol/sig/commissioner
+	name = "The Defender"
+	desc = "A modified Sig P225 salvaged from the boneyard. Boasts a faster rate of fire and laser-like accuracy. It has 'To Protect and Serve' etched on the side."
+	w_class = WEIGHT_CLASS_SMALL
+	extra_damage = 5
+	fire_delay = 1.7
+	extra_speed = 100
+	spread = 0
 
 
 //Beretta M9FS							Keywords: 9mm, Semi-auto, 15 round magazine. Special modifiers: spread -1
@@ -257,7 +279,7 @@
 	icon_state = "deagle"
 	item_state = "deagle"
 	mag_type = /obj/item/ammo_box/magazine/m44
-	weapon_weight = WEAPON_MEDIUM 
+	weapon_weight = WEAPON_MEDIUM
 	force = 15
 	extra_damage = 3
 	extra_speed = 300
@@ -283,7 +305,7 @@
 	icon_state = "automag"
 	item_state = "deagle"
 	mag_type = /obj/item/ammo_box/magazine/automag
-	weapon_weight = WEAPON_MEDIUM 
+	weapon_weight = WEAPON_MEDIUM
 	extra_damage = 2
 	extra_speed = 300
 	fire_delay = 3.7
@@ -299,6 +321,7 @@
 	desc = "A Swiss SIG-Sauer 14mm handgun, powerful but a little inaccurate"
 	icon_state = "pistol14"
 	mag_type = /obj/item/ammo_box/magazine/m14mm
+	weapon_weight = WEAPON_MEDIUM
 	force = 15
 	fire_delay = 5
 	recoil = 0.25
