@@ -15,7 +15,7 @@
 	if(isliving(M))
 		to_chat(M, "<span class='notice'>You come down from your high. The wild ride is unfortunately over...</span>")
 		M.confused += 2
-	
+
 /datum/reagent/drug/jet/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(-20, 0)
 	M.set_drugginess(20)
@@ -258,8 +258,8 @@
 		to_chat(M, "<span class='notice'>You feel stronger, and like you're able to endure more.</span>")
 		ADD_TRAIT(M, TRAIT_BUFFOUT_BUFF, "buffout")
 		ADD_TRAIT(M, TRAIT_PERFECT_ATTACKER, "buffout")
-		M.maxHealth += 25
-		M.health += 25
+		M.maxHealth += 15
+		M.health += 15
 
 /datum/reagent/drug/buffout/on_mob_delete(mob/living/carbon/human/M)
 	..()
@@ -267,8 +267,8 @@
 		to_chat(M, "<span class='notice'>You feel weaker.</span>")
 		REMOVE_TRAIT(M, TRAIT_BUFFOUT_BUFF, "buffout")
 		REMOVE_TRAIT(M, TRAIT_PERFECT_ATTACKER, "buffout")
-		M.maxHealth -= 25
-		M.health -= 25
+		M.maxHealth -= 15
+		M.health -= 15
 
 /datum/reagent/drug/buffout/on_mob_life(mob/living/carbon/M)
 	M.AdjustStun(-10*REAGENTS_EFFECT_MULTIPLIER, 0)

@@ -258,7 +258,7 @@ Great Khan
 	backpack_contents = list(
 		/obj/item/restraints/handcuffs = 1,
 		/obj/item/reagent_containers/pill/patch/jet = 2,
-		/obj/item/reagent_containers/syringe/medx = 1,
+		/obj/item/reagent_containers/pill/patch/medx = 1,
 		/obj/item/reagent_containers/hypospray/medipen/stimpak = 1,
 		)
 	head = /obj/item/clothing/head/helmet/f13/khan
@@ -275,7 +275,7 @@ Great Khan
 		GLOB.all_gangs |= GK
 		GK.add_member(H)
 		H.gang = GK
-	
+
 	H.mind.teach_crafting_recipe(/datum/crafting_recipe/set_vrboard/den)
 
 
@@ -982,7 +982,7 @@ Raider
 		GLOB.all_gangs |= DM
 		DM.add_member(H)
 		H.gang = DM
-	
+
 	H.mind.teach_crafting_recipe(/datum/crafting_recipe/set_vrboard/den)
 
 /datum/outfit/loadout/hitman

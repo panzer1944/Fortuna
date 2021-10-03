@@ -96,7 +96,7 @@ datum/reagent/medicine/super_stimpak/on_mob_life(mob/living/M)
 	M.adjustOxyLoss(12*REAGENTS_EFFECT_MULTIPLIER)
 	..()
 	. = TRUE
-	
+
 /datum/reagent/medicine/longpork_stew
 	name = "longpork stew"
 	description = "A dish sworn by some to have unusual healing properties. To most it just tastes disgusting. What even is longpork anyways?..."
@@ -134,7 +134,7 @@ datum/reagent/medicine/super_stimpak/on_mob_life(mob/living/M)
 	reagent_state = SOLID
 	color =  "#7f7add"
 	taste_description = "heaven."
-	metabolization_rate = 0.7 * REAGENTS_METABOLISM 
+	metabolization_rate = 0.7 * REAGENTS_METABOLISM
 	overdose_threshold = 30 //hard to OD on, besides if you use too much it kills you when it wears off
 
 /datum/reagent/medicine/berserker_powder/on_mob_life(mob/living/carbon/M)
@@ -319,15 +319,15 @@ datum/reagent/medicine/super_stimpak/on_mob_life(mob/living/M)
 	..()
 	if(isliving(M))
 		to_chat(M, "<span class='notice'>You feel tougher, able to shrug off pain more easily.</span>")
-		M.maxHealth += 100
-		M.health += 100
+		M.maxHealth += 50
+		M.health += 50
 		ADD_TRAIT(M, TRAIT_IGNOREDAMAGESLOWDOWN, "[type]")
 
 /datum/reagent/medicine/medx/on_mob_delete(mob/living/carbon/human/M)
 	if(isliving(M))
 		to_chat(M, "<span class='notice'>You feel as vulnerable to pain as a normal person.</span>")
-		M.maxHealth -= 100
-		M.health -= 100
+		M.maxHealth -= 50
+		M.health -= 50
 		REMOVE_TRAIT(M, TRAIT_IGNOREDAMAGESLOWDOWN, "[type]")
 	switch(current_cycle)
 		if(1 to 25)
@@ -342,7 +342,7 @@ datum/reagent/medicine/super_stimpak/on_mob_life(mob/living/M)
 			M.set_disgust(12)
 			M.adjustStaminaLoss(30*REAGENTS_EFFECT_MULTIPLIER)
 			to_chat(M, "<span class='danger'>Your stomach churns, your eyes cloud and you're pretty sure you just popped a lung. You shouldn't take so much med-X at once. </span>")
-		if(51 to INFINITY)
+		if(51 to 150)
 			M.confused +=40
 			M.blur_eyes(30)
 			M.losebreath += 10
@@ -354,14 +354,14 @@ datum/reagent/medicine/super_stimpak/on_mob_life(mob/living/M)
 			M.playsound_local(M, 'sound/effects/singlebeat.ogg', 100, 0)
 			M.visible_message("<span class='userdanger'>[M] clutches their stomach and vomits violently onto the ground, bloody froth covering their lips!</span>")
 			to_chat(M, "<span class='userdanger'>You throw up everything you've eaten in the past week and some blood to boot. You're pretty sure your heart just stopped for a second, too. </span>")
-/*		if(101 to INFINITY)
+		if(151 to INFINITY)
 //			M.adjust_eye_damage(30)
 			M.Unconscious(400)
 			M.Jitter(1000)
 			M.set_heartattack(TRUE)
 			M.visible_message("<span class='userdanger'>[M] clutches at their chest as if their heart stopped!</span>")
 			to_chat(M, "<span class='danger'>Your vision goes black and your heart stops beating as the amount of drugs in your system shut down your organs one by one. Say hello to Elvis in the afterlife. </span>")
-			*/
+
 	..()
 
 /datum/reagent/medicine/medx/on_mob_life(mob/living/carbon/M)

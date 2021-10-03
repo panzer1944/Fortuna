@@ -55,6 +55,7 @@
 	desc = "A chem that vastly increases the user's reflexes and slows their perception of time."
 	list_reagents = list(/datum/reagent/drug/turbo = 5)
 	icon_state = "bandaid_turbo"
+	self_delay = 50 //5 seconds
 
 /obj/item/reagent_containers/pill/patch/healingpowder
 	name = "Healing Powder"
@@ -80,7 +81,7 @@
 /obj/item/reagent_containers/pill/patch/bitterdrink
 	name = "Bitter drink"
 	desc = "A strong herbal healing concoction which enables wounded soldiers and travelers to tend to their wounds without stopping during journeys."
-	list_reagents = list(/datum/reagent/medicine/bitter_drink = 15) 
+	list_reagents = list(/datum/reagent/medicine/bitter_drink = 15)
 	icon_state = "Voodoo"
 	self_delay = 0
 
@@ -91,3 +92,11 @@
 	icon_state = "bandaid_berserkerpowder"
 	self_delay = 0
 
+/obj/item/reagent_containers/pill/patch/medx
+	name = "syringe (med-x)"
+	desc = "Contains Med-X, a powerful analgesic drug that increases the user's damage resistance. Highly addictive, and prolonged presence in the body comes with severe side effects."
+	list_reagents = list(/datum/reagent/medicine/medx = 5)
+	icon = 'icons/obj/syringe.dmi'
+	icon_state = "med-x"
+	item_state = "med-x"
+	self_delay = 50 //5 seconds
